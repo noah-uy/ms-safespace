@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 * {
   text-decoration: none;
   box-sizing: border-box;
@@ -146,6 +143,7 @@ navbar .logo {
 .main .video-cont {
   width: 100%;
   text-align: center;
+  left: -50px;
 }
 .main .video-cont .video-self {
   height: 400px;
