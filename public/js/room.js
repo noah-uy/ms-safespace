@@ -72,6 +72,7 @@ function reportWindowSize() {
 window.onresize = reportWindowSize;
 //
 
+// For clearing whiteboard
 function clearBoard() {
     if (window.confirm('Are you sure you want to clear board? This cannot be undone')) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -85,6 +86,7 @@ socket.on('clearBoard', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 })
 
+// For drawing on whiteboard
 function draw(newx, newy, oldx, oldy) {
     ctx.strokeStyle = color;
     ctx.lineWidth = drawsize;
@@ -98,6 +100,7 @@ function draw(newx, newy, oldx, oldy) {
 
 }
 
+// If user on the other end is also drawing on whiteboard
 function drawRemote(newx, newy, oldx, oldy) {
     ctx.strokeStyle = colorRemote;
     ctx.lineWidth = drawsizeRemote;
@@ -136,7 +139,7 @@ socket.on('draw', (newX, newY, prevX, prevY, color, size) => {
     drawRemote(newX, newY, prevX, prevY);
 })
 
-//whiteboard js end
+//end of code for whiteboard 
 
 let videoAllowed = 1;
 let audioAllowed = 1;
@@ -152,7 +155,7 @@ mymuteicon.style.visibility = 'hidden';
 let myvideooff = document.querySelector("#myvideooff");
 myvideooff.style.visibility = 'hidden';
 
-const configuration = { iceServers: [{ urls: "stun:stun.stunprotocol.org" }] }
+const configuration = { iceServers: [{ urls: "stun:stun.stunprotocol.org" }] } 
 
 const mediaConstraints = { video: true, audio: true };
 
@@ -195,7 +198,6 @@ function CopyClassText() {
     }, 5000);
 }
 
-
 continueButt.addEventListener('click', () => {
     if (nameField.value == '') return;
     username = nameField.value;
@@ -223,6 +225,7 @@ socket.on('user count', count => {
 
 let peerConnection;
 
+// Will check if media devices are available
 function handleGetUserMediaError(e) {
     switch (e.name) {
         case "NotFoundError":
@@ -245,7 +248,7 @@ function reportError(e) {
     return;
 }
 
-
+// Will start devices
 function startCall() {
 
     navigator.mediaDevices.getUserMedia(mediaConstraints)
@@ -269,6 +272,7 @@ function startCall() {
 
 }
 
+// Will start handling offer from peer who started the connection
 function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
 
     cName[sid] = cname;
@@ -352,6 +356,7 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
             .catch(reportError);
     };
 
+    // handles the description of the offer to be sent through the signalling channel
     let desc = new RTCSessionDescription(offer);
 
     connections[sid].setRemoteDescription(desc)
@@ -388,6 +393,7 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
 
 }
 
+// Create new ICE candidate 
 function handleNewIceCandidate(candidate, sid) {
     console.log('new candidate recieved')
     var newcandidate = new RTCIceCandidate(candidate);
@@ -402,8 +408,7 @@ function handleVideoAnswer(answer, sid) {
     connections[sid].setRemoteDescription(ans);
 }
 
-//Thanks to (https://github.com/miroslavpejic85) for ScreenShare Code
-
+//Code for screenshare
 screenShareButt.addEventListener('click', () => {
     screenShareToggle();
 });
@@ -453,13 +458,15 @@ function screenShareToggle() {
         });
 }
 
+//end of code for screenshare
+
 socket.on('video-offer', handleVideoOffer);
 
 socket.on('new icecandidate', handleNewIceCandidate);
 
 socket.on('video-answer', handleVideoAnswer);
 
-
+// Connection will start since all preliminary functions have already been established
 socket.on('join room', async (conc, cnames, micinfo, videoinfo) => {
     socket.emit('getCanvas');
     if (cnames)
@@ -645,7 +652,6 @@ videoButt.addEventListener('click', () => {
     }
 })
 
-
 audioButt.addEventListener('click', () => {
 
     if (audioAllowed) {
@@ -709,6 +715,7 @@ socket.on('action', (msg, sid) => {
     }
 })
 
+//function that handles the displaying / hiding of whiteboard 
 whiteboardButt.addEventListener('click', () => {
     if (boardVisisble) {
         whiteboardCont.style.visibility = 'hidden';
@@ -720,6 +727,7 @@ whiteboardButt.addEventListener('click', () => {
     }
 })
 
+//ends the call
 cutCall.addEventListener('click', () => {
     location.href = '/';
 })
