@@ -1,6 +1,6 @@
 const createButton = document.querySelector("#createroom");
-const videoCont = document.querySelector('.video-self');
-const codeCont = document.querySelector('#roomcode');
+const videoCont = document.querySelector('.video-display-user');
+const codeCont = document.querySelector('#meeting-code');
 const joinBut = document.querySelector('#joinroom');
 const mic = document.querySelector('#mic');
 const cam = document.querySelector('#webcam');
@@ -27,7 +27,7 @@ const createroomtext = 'Creating Room...';
 joinBut.addEventListener('click', (e) => {
     e.preventDefault();
     if (codeCont.value.trim() == "") {
-        codeCont.classList.add('roomcode-error');
+        codeCont.classList.add('meeting-code-error');
         return;
     }
     const code = codeCont.value;
@@ -37,7 +37,7 @@ joinBut.addEventListener('click', (e) => {
 codeCont.addEventListener('change', (e) => {
     e.preventDefault();
     if (codeCont.value.trim() !== "") {
-        codeCont.classList.remove('roomcode-error');
+        codeCont.classList.remove('meeting-code-error');
         return;
     }
 })

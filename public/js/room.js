@@ -1,22 +1,23 @@
-const socket = io();
-const myvideo = document.querySelector("#vd1");
-const roomid = params.get("room");
 let username;
-const chatRoom = document.querySelector('.chat-cont');
+
+const socket = io();
+const myvideo = document.querySelector("#video-single");
+const roomid = params.get("room");
+const chatRoom = document.querySelector('.chat-box');
 const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');
 const videoContainer = document.querySelector('#vcont');
 const overlayContainer = document.querySelector('#overlay')
-const continueButt = document.querySelector('.continue-name');
+const continueButt = document.querySelector('.continue-btn');
 const nameField = document.querySelector('#name-field');
-const videoButt = document.querySelector('.novideo');
-const audioButt = document.querySelector('.audio');
-const cutCall = document.querySelector('.cutcall');
-const screenShareButt = document.querySelector('.screenshare');
-const whiteboardButt = document.querySelector('.board-icon')
+const videoButt = document.querySelector('.video-btn');
+const audioButt = document.querySelector('.audio-btn');
+const cutCall = document.querySelector('.end-call-btn');
+const screenShareButt = document.querySelector('.screenshare-btn');
+const whiteboardButt = document.querySelector('.board-btn')
 
 //whiteboard js start
-const whiteboardCont = document.querySelector('.whiteboard-cont');
+const whiteboardCont = document.querySelector('.white-board');
 const canvas = document.querySelector("#whiteboard");
 const ctx = canvas.getContext('2d');
 
@@ -167,11 +168,11 @@ let videoTrackSent = {};
 let mystream, myscreenshare;
 
 
-document.querySelector('.roomcode').innerHTML = `${roomid}`
+document.querySelector('.meeting-code').innerHTML = `${roomid}`
 
 function CopyClassText() {
 
-    var textToCopy = document.querySelector('.roomcode');
+    var textToCopy = document.querySelector('.meeting-code');
     var currentRange;
     if (document.getSelection().rangeCount > 0) {
         currentRange = document.getSelection().getRangeAt(0);
@@ -216,10 +217,10 @@ nameField.addEventListener("keyup", function (event) {
 
 socket.on('user count', count => {
     if (count > 1) {
-        videoContainer.className = 'video-cont';
+        videoContainer.className = 'video-display';
     }
     else {
-        videoContainer.className = 'video-cont-single';
+        videoContainer.className = 'video-display-single';
     }
 })
 
@@ -297,9 +298,9 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
             let name = document.createElement('div');
             let muteIcon = document.createElement('div');
             let videoOff = document.createElement('div');
-            videoOff.classList.add('video-off');
-            muteIcon.classList.add('mute-icon');
-            name.classList.add('nametag');
+            videoOff.classList.add('video-off-icon');
+            muteIcon.classList.add('mute-btn');
+            name.classList.add('user-name-tag');
             name.innerHTML = `${cName[sid]}`;
             vidCont.id = sid;
             muteIcon.id = `mute${sid}`;
@@ -458,15 +459,12 @@ function screenShareToggle() {
         });
 }
 
-//end of code for screenshare
-
 socket.on('video-offer', handleVideoOffer);
 
 socket.on('new icecandidate', handleNewIceCandidate);
 
 socket.on('video-answer', handleVideoAnswer);
 
-// Connection will start since all preliminary functions have already been established
 socket.on('join room', async (conc, cnames, micinfo, videoinfo) => {
     socket.emit('getCanvas');
     if (cnames)
@@ -500,9 +498,9 @@ socket.on('join room', async (conc, cnames, micinfo, videoinfo) => {
                     let name = document.createElement('div');
                     let muteIcon = document.createElement('div');
                     let videoOff = document.createElement('div');
-                    videoOff.classList.add('video-off');
-                    muteIcon.classList.add('mute-icon');
-                    name.classList.add('nametag');
+                    videoOff.classList.add('video-off-icon');
+                    muteIcon.classList.add('mute-btn');
+                    name.classList.add('user-name-tag');
                     name.innerHTML = `${cName[sid]}`;
                     vidCont.id = sid;
                     muteIcon.id = `mute${sid}`;
@@ -715,7 +713,6 @@ socket.on('action', (msg, sid) => {
     }
 })
 
-//function that handles the displaying / hiding of whiteboard 
 whiteboardButt.addEventListener('click', () => {
     if (boardVisisble) {
         whiteboardCont.style.visibility = 'hidden';
@@ -727,7 +724,6 @@ whiteboardButt.addEventListener('click', () => {
     }
 })
 
-//ends the call
 cutCall.addEventListener('click', () => {
     location.href = '/';
 })

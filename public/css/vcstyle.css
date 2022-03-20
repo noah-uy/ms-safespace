@@ -46,27 +46,27 @@ navbar .logo {
   margin-top: 32px;
 }
 
-.main {
+.index {
   display: flex;
   padding: 0 12%;
   margin-top: 20vh;
   width: 100%;
 }
-.main .create-join {
+.index .join-room-div {
   width: 85%;
   margin-right: 50px;
 }
-.main .create-join .text .head {
+.index .join-room-div .text .head {
   font-size: 36px;
   font-weight: bold;
   color: #393e46;
 }
-.main .create-join .text .subtext {
+.index .join-room-div .text .subtext {
   font-size: 24px;
   color: #6f6f6f;
   margin-top: 10px;
 }
-.main .create-join .createroom-butt {
+.index .join-room-div .createroom-butt {
   width: 100%;
   margin-top: 60px;
   font-size: 24px;
@@ -80,16 +80,16 @@ navbar .logo {
   border: 2px solid #B064E3;
   transition: 0.3s;
 }
-.main .create-join .createroom-butt:hover {
+.index .join-room-div .createroom-butt:hover {
   background-color: white;
   border: 2px solid #4ecca3;
   color: #4ecca3;
   cursor: pointer;
 }
-.main .create-join .createroom-butt:focus {
+.index .join-room-div .createroom-butt:focus {
   outline: none;
 }
-.main .create-join .createroom-clicked {
+.index .join-room-div .createroom-clicked {
   width: 100%;
   margin-top: 60px;
   font-size: 24px;
@@ -102,10 +102,10 @@ navbar .logo {
   border: 2px solid #4ecca3;
   color: #4ecca3;
 }
-.main .create-join .createroom-clicked:focus {
+.index .join-room-div .createroom-clicked:focus {
   outline: none;
 }
-.main .create-join .roomcode {
+.index .join-room-div .meeting-code {
   width: 100%;
   margin-top: 100px;
   font-size: 24px;
@@ -117,7 +117,7 @@ navbar .logo {
   border-top: 2px solid white;
   font-weight: bold;
 }
-.main .create-join .roomcode:focus {
+.index .join-room-div .meeting-code:focus {
   background-color: white;
   border: 0;
   border-bottom: 3px solid #232931;
@@ -125,24 +125,24 @@ navbar .logo {
   outline: none;
   border-radius: 0;
 }
-.main .create-join .roomcode-error {
+.index .join-room-div .meeting-code-error {
   border-bottom: 3px solid #d31c1c;
 }
-.main .create-join .joinroom {
+.index .join-room-div .join-room-btn {
   width: 100%;
   margin-top: 20px;
   font-size: 24px;
   font-weight: bold;
-  background-color: #B064E3;
+  background-color: #3490dc;
   color: white;
   text-align: center;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  border: 2px solid #B064E3;
+  border: 2px solid #3490dc;
   transition: 0.3s;
 }
-.main .create-join .divider {
+.index .join-room-div .divider {
   margin-top: 20px;
   width: 100%;
   text-align: Center;
@@ -151,30 +151,30 @@ navbar .logo {
   color: #232931;
 }
 
-.main .create-join .joinroom:hover {
+.index .join-room-div .join-room-btn:hover {
   cursor: pointer;
   text-decoration: underline;
 }
-.main .video-cont {
+.index .video-display {
   width: 100%;
   text-align: center;
   left: -50px;
 }
-.main .video-cont .video-self {
+.index .video-display .video-display-user {
   height: 400px;
   width: 100%;
   background-color: #393e46;
   border-radius: 10px;
   object-fit: cover;
 }
-.main .video-cont .settings {
+.index .video-display .buttons {
   margin: 0 auto;
   display: flex;
   margin-top: 10px;
   width: 100px;
 }
-.main .video-cont .settings .device {
-  background-color: #B064E3;
+.index .video-display .buttons .device {
+  background-color: #3490dc;
   border-radius: 100px;
   padding: 10px;
   width: 40px;
@@ -182,11 +182,11 @@ navbar .logo {
   margin-right: 10px;
   color: white;
 }
-.main .video-cont .settings .device:hover {
+.index .video-display .buttons .device:hover {
   background-color: #393e46;
   cursor: pointer;
 }
-.main .video-cont .settings .nodevice {
+.index .video-display .buttons .nodevice {
   background-color: #b12c2c;
   border-radius: 100px;
   padding: 10px;
@@ -195,25 +195,25 @@ navbar .logo {
   margin-right: 10px;
   color: white;
 }
-.main .video-cont .settings .nodevice:hover {
+.index .video-display .buttons .nodevice:hover {
   background-color: #393e46;
   cursor: pointer;
 }
 
 @media (max-width: 1200px) {
-  .main {
+  .index {
     flex-direction: column;
   }
-  .main .create-join {
+  .index .join-room-div {
     width: 100%;
     margin-right: 0;
   }
-  .main .video-cont {
+  .index .video-display {
     margin-top: 100px;
     margin-bottom: 100px;
   }
 }
-.overlay {
+.dialog-box {
   position: fixed;
   z-index: 100;
   top: 0;
@@ -224,7 +224,7 @@ navbar .logo {
   width: 100%;
   background-color: #393e46;
 }
-.overlay .box {
+.dialog-box .box {
   width: 25%;
   margin: 0 auto;
   height: 200px;
@@ -233,46 +233,46 @@ navbar .logo {
   border-radius: 10px;
   text-align: center;
 }
-.overlay .box .head-name {
+.dialog-box .box .user-name {
   padding-top: 20px;
   text-align: center;
   color: #393e46;
   font-weight: bold;
 }
-.overlay .box .name-field {
+.dialog-box .box .input-name {
   margin: 0px auto;
   margin-top: 20px;
   border: 0;
   font-weight: bold;
   padding: 10px;
   width: 90%;
-  border-bottom: 3px solid #B064E3;
+  border-bottom: 3px solid #3490dc;
   color: #393e46;
   height: 40px;
 }
-.overlay .box .name-field:focus {
+.dialog-box .box .input-name:focus {
   outline: none;
 }
-.overlay .box .continue-name {
+.dialog-box .box .continue-btn {
   border: none;
   margin: 0 auto;
   margin-top: 30px;
   color: #ffffff;
   font-weight: bold;
-  background-color: #B064E3;
+  background-color: #3490dc;
   padding: 12px 20px;
   border-radius: 10px;
   transition: opacity 0.5s;
 }
-.overlay .box .continue-name:hover {
+.dialog-box .box .continue-btn:hover {
   opacity: 0.8;
   cursor: pointer;
 }
-.overlay .box .continue-name:focus {
+.dialog-box .box .continue-btn:focus {
   outline: 0;
 }
 
-.container-room {
+.room-div {
   margin: 0;
   top: 0;
   bottom: 0;
@@ -282,19 +282,19 @@ navbar .logo {
   /* Handle */
   /* Handle on hover */
 }
-.container-room ::-webkit-scrollbar {
+.room-div ::-webkit-scrollbar {
   width: 10px;
 }
-.container-room ::-webkit-scrollbar-track {
+.room-div ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-.container-room ::-webkit-scrollbar-thumb {
+.room-div ::-webkit-scrollbar-thumb {
   background: #c5c5c5;
 }
-.container-room ::-webkit-scrollbar-thumb:hover {
+.room-div ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.container-room .left-cont {
+.room-div .main-div {
   width: 80%;
   background-color: #393e46;
   height: 100vh;
@@ -302,7 +302,7 @@ navbar .logo {
   text-align: center;
   position: relative;
 }
-.container-room .left-cont .whiteboard-cont {
+.room-div .main-div .white-board {
   height: 85vh;
   width: 100%;
   position: absolute;
@@ -312,144 +312,144 @@ navbar .logo {
   padding-bottom: 0;
   min-height: 600px;
 }
-.container-room .left-cont .whiteboard-cont #whiteboard {
+.room-div .main-div .white-board #whiteboard {
   background-color: white;
   border-radius: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont {
+.room-div .main-div .white-board .color-palette {
   position: absolute;
   right: 80px;
   top: 80px;
   display: flex;
   flex-direction: column;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .black {
+.room-div .main-div .white-board .color-palette .black {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: black;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .black:hover {
+.room-div .main-div .white-board .color-palette .black:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .red {
+.room-div .main-div .white-board .color-palette .red {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #e74c3c;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .red:hover {
+.room-div .main-div .white-board .color-palette .red:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .yellow {
+.room-div .main-div .white-board .color-palette .yellow {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #f1c40f;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .yellow:hover {
+.room-div .main-div .white-board .color-palette .yellow:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .green {
+.room-div .main-div .white-board .color-palette .green {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #badc58;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .green:hover {
+.room-div .main-div .white-board .color-palette .green:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .orange {
+.room-div .main-div .white-board .color-palette .orange {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #e67e22;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .orange:hover {
+.room-div .main-div .white-board .color-palette .orange:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .purple {
+.room-div .main-div .white-board .color-palette .purple {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #9b59b6;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .purple:hover {
+.room-div .main-div .white-board .color-palette .purple:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .blue {
+.room-div .main-div .white-board .color-palette .blue {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #3498db;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .blue:hover {
+.room-div .main-div .white-board .color-palette .blue:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .pink {
+.room-div .main-div .white-board .color-palette .pink {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #fd79a8;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .pink:hover {
+.room-div .main-div .white-board .color-palette .pink:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .brown {
+.room-div .main-div .white-board .color-palette .brown {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: #834c32;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .brown:hover {
+.room-div .main-div .white-board .color-palette .brown:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .grey {
+.room-div .main-div .white-board .color-palette .grey {
   height: 30px;
   width: 30px;
   border-radius: 50px;
   background-color: gray;
   margin-top: 10px;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .grey:hover {
+.room-div .main-div .white-board .color-palette .grey:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .eraser {
+.room-div .main-div .white-board .color-palette .eraser {
   height: 30px;
   width: 30px;
   font-size: 26px;
   margin-top: 10px;
   color: #2b2b2b;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .eraser:hover {
+.room-div .main-div .white-board .color-palette .eraser:hover {
   cursor: pointer;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .clearboard {
+.room-div .main-div .white-board .color-palette .clearboard {
   height: 30px;
   width: 30px;
   font-size: 26px;
   margin-top: 10px;
   color: #2b2b2b;
 }
-.container-room .left-cont .whiteboard-cont .colors-cont .clearboard:hover {
+.room-div .main-div .white-board .color-palette .clearboard:hover {
   cursor: pointer;
 }
-.container-room .left-cont .video-cont {
+.room-div .main-div .video-display {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   height: 75vh;
 }
-.container-room .left-cont .video-cont .video-box {
+.room-div .main-div .video-display .video-box {
   background-color: #353b48;
   height: 100%;
   min-height: 200px;
@@ -457,7 +457,7 @@ navbar .logo {
   border-radius: 5px;
   position: relative;
 }
-.container-room .left-cont .video-cont .video-box .video-frame {
+.room-div .main-div .video-display .video-box .video-frame {
   background-color: #353b48;
   height: 100%;
   min-height: 200px;
@@ -465,14 +465,14 @@ navbar .logo {
   object-fit: cover;
   border-radius: 5px;
 }
-.container-room .left-cont .video-cont .video-box .nametag {
+.room-div .main-div .video-display .video-box .user-name-tag {
   color: white;
   bottom: 10px;
   position: absolute;
   left: 10px;
   bottom: 10px;
 }
-.container-room .left-cont .video-cont .video-box .video-off {
+.room-div .main-div .video-display .video-box .video-off-btn {
   color: white;
   bottom: 10px;
   position: absolute;
@@ -483,7 +483,7 @@ navbar .logo {
   margin-left: auto;
   margin-right: auto;
 }
-.container-room .left-cont .video-cont .video-box .mute-icon {
+.room-div .main-div .video-display .video-box .mute-btn {
   color: #d63434;
   bottom: 10px;
   position: absolute;
@@ -491,10 +491,10 @@ navbar .logo {
   font-size: 20px;
   bottom: 10px;
 }
-.container-room .left-cont .video-cont-single {
+.room-div .main-div .video-display-single {
   height: 75vh;
 }
-.container-room .left-cont .video-cont-single .video-box {
+.room-div .main-div .video-display-single .video-box {
   background-color: #353b48;
   height: 100%;
   min-height: 200px;
@@ -502,7 +502,7 @@ navbar .logo {
   border-radius: 5px;
   position: relative;
 }
-.container-room .left-cont .video-cont-single .video-box .video-frame {
+.room-div .main-div .video-display-single .video-box .video-frame {
   background-color: #353b48;
   height: 100%;
   min-height: 200px;
@@ -510,14 +510,14 @@ navbar .logo {
   object-fit: cover;
   border-radius: 5px;
 }
-.container-room .left-cont .video-cont-single .video-box .nametag {
+.room-div .main-div .video-display-single .video-box .user-name-tag {
   color: white;
   bottom: 10px;
   position: absolute;
   left: 10px;
   bottom: 10px;
 }
-.container-room .left-cont .video-cont-single .video-box .video-off {
+.room-div .main-div .video-display-single .video-box .video-off-btn {
   color: white;
   bottom: 10px;
   font-weight: bold;
@@ -528,7 +528,7 @@ navbar .logo {
   margin-left: auto;
   margin-right: auto;
 }
-.container-room .left-cont .video-cont-single .video-box .mute-icon {
+.room-div .main-div .video-display-single .video-box .mute-btn {
   color: #d63434;
   bottom: 10px;
   position: absolute;
@@ -536,10 +536,10 @@ navbar .logo {
   font-size: 20px;
   bottom: 10px;
 }
-.container-room .left-cont .footer {
+.room-div .main-div .toolbar {
   position: relative;
 }
-.container-room .left-cont .footer .utils {
+.room-div .main-div .toolbar .utils {
   text-align: center;
   margin: 0 auto;
   display: flex;
@@ -550,8 +550,8 @@ navbar .logo {
   padding: 10px;
   justify-content: center;
 }
-.container-room .left-cont .footer .utils .audio {
-  background-color: #B064E3;
+.room-div .main-div .toolbar .utils .audio-btn {
+  background-color: #3490dc;
   text-align: center;
   color: white;
   padding: 10px;
@@ -560,12 +560,12 @@ navbar .logo {
   border-radius: 100px;
   transition: background-color 0.3s;
 }
-.container-room .left-cont .footer .utils .audio:hover {
+.room-div .main-div .toolbar .utils .audio-btn:hover {
   cursor: pointer;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .utils .novideo {
-  background-color: #B064E3;
+.room-div .main-div .toolbar .utils .video-btn {
+  background-color: #3490dc;
   text-align: center;
   margin-left: 10px;
   color: white;
@@ -575,11 +575,11 @@ navbar .logo {
   border-radius: 100px;
   transition: background-color 0.3s;
 }
-.container-room .left-cont .footer .utils .novideo:hover {
+.room-div .main-div .toolbar .utils .video-btn:hover {
   cursor: pointer;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .utils .screenshare {
+.room-div .main-div .toolbar .utils .screenshare-btn {
   background-color: #d8d8d8;
   text-align: center;
   margin-left: 10px;
@@ -591,12 +591,12 @@ navbar .logo {
   transition: background-color 0.3s;
   transition: color 0.3s;
 }
-.container-room .left-cont .footer .utils .screenshare:hover {
+.room-div .main-div .toolbar .utils .screenshare-btn:hover {
   cursor: pointer;
   color: white;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .utils .board-icon {
+.room-div .main-div .toolbar .utils .board-btn {
   background-color: #d8d8d8;
   text-align: center;
   color: #393e46;
@@ -608,12 +608,12 @@ navbar .logo {
   transition: background-color 0.3s;
   transition: color 0.3s;
 }
-.container-room .left-cont .footer .utils .board-icon:hover {
+.room-div .main-div .toolbar .utils .board-btn:hover {
   cursor: pointer;
   color: white;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .utils .cutcall {
+.room-div .main-div .toolbar .utils .end-call-btn {
   background-color: #cc4e4e;
   text-align: center;
   margin-left: 10px;
@@ -624,44 +624,44 @@ navbar .logo {
   border-radius: 100px;
   transition: background-color 0.3s;
 }
-.container-room .left-cont .footer .utils .cutcall:hover {
+.room-div .main-div .toolbar .utils .end-call-btn:hover {
   cursor: pointer;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .copycode-cont {
+.room-div .main-div .toolbar .copycode-cont {
   position: absolute;
   top: 10px;
   left: 0;
   display: flex;
 }
-.container-room .left-cont .footer .copycode-cont .roomcode {
-  color: #B064E3;
+.room-div .main-div .toolbar .copycode-cont .meeting-code {
+  color: #3490dc;
   padding: 10px 20px;
   background-color: white;
-  border-bottom: 3px solid #B064E3;
+  border-bottom: 3px solid #3490dc;
   font-weight: bold;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.container-room .left-cont .footer .copycode-cont .copycode-button {
+.room-div .main-div .toolbar .copycode-cont .copycode-button {
   padding: 10px 0;
   width: 100px;
   text-align: center;
   color: white;
-  background-color: #B064E3;
+  background-color: #3490dc;
   border: none;
   font-weight: bold;
   outline: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.container-room .left-cont .footer .copycode-cont .copycode-button:hover {
+.room-div .main-div .toolbar .copycode-cont .copycode-button:hover {
   cursor: pointer;
 }
-.container-room .left-cont .footer .copycode-cont .copycode-button:focus {
+.room-div .main-div .toolbar .copycode-cont .copycode-button:focus {
   outline: none;
 }
-.container-room .right-cont {
+.room-div .chat-div {
   width: 30%;
   background-color: #ffffff;
   height: 100vh;
@@ -669,19 +669,19 @@ navbar .logo {
   /* Handle */
   /* Handle on hover */
 }
-.container-room .right-cont ::-webkit-scrollbar {
+.room-div .chat-div ::-webkit-scrollbar {
   width: 10px;
 }
-.container-room .right-cont ::-webkit-scrollbar-track {
+.room-div .chat-div ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-.container-room .right-cont ::-webkit-scrollbar-thumb {
+.room-div .chat-div ::-webkit-scrollbar-thumb {
   background: #c5c5c5;
 }
-.container-room .right-cont ::-webkit-scrollbar-thumb:hover {
+.room-div .chat-div ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.container-room .right-cont .head-title {
+.room-div .chat-div .head-title {
   font-weight: bold;
   color: #393e46;
   background-color: #ffffff;
@@ -689,27 +689,27 @@ navbar .logo {
   display: flex;
   border-bottom: 2px solid #393e46;
 }
-.container-room .right-cont .head-title .chats,
-.container-room .right-cont .head-title .attendies {
+.room-div .chat-div .head-title .chats,
+.room-div .chat-div .head-title .attendies {
   padding: 10px;
   padding-top: 20px;
   width: 100%;
   text-align: center;
   transition: background-color 0.5s;
 }
-.container-room .right-cont .head-title .chats:hover,
-.container-room .right-cont .head-title .attendies:hover {
+.room-div .chat-div .head-title .chats:hover,
+.room-div .chat-div .head-title .attendies:hover {
   background-color: #f8f8f8;
   cursor: pointer;
 }
-.container-room .right-cont .chat-cont {
+.room-div .chat-div .chat-box {
   background-color: #ffffff;
   height: 84vh;
   padding: 10px;
   padding-top: 10px;
   overflow-y: scroll;
 }
-.container-room .right-cont .chat-cont .message {
+.room-div .chat-div .chat-box .message {
   margin-bottom: 15px;
   margin-left: 10px;
   background-color: #ffffff;
@@ -717,64 +717,64 @@ navbar .logo {
   word-break: break-all;
   word-wrap: break-word;
 }
-.container-room .right-cont .chat-cont .message .info {
+.room-div .chat-div .chat-box .message .info {
   display: flex;
   font-size: 0.85rem;
 }
-.container-room .right-cont .chat-cont .message .info .username {
+.room-div .chat-div .chat-box .message .info .username {
   font-weight: bold;
-  color: #4ecca3;
+  color: #3490dc;
 }
-.container-room .right-cont .chat-cont .message .info .time {
+.room-div .chat-div .chat-box .message .info .time {
   margin-left: 12px;
 }
-.container-room .right-cont .chat-cont .message .content {
+.room-div .chat-div .chat-box .message .content {
   margin-top: 5px;
   font-size: 0.9rem;
 }
-.container-room .right-cont .chat-input-cont {
+.room-div .chat-div .chat-input-box {
   padding: 12px;
   display: flex;
   height: 60px;
   background-color: #ffffff;
   box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.15);
 }
-.container-room .right-cont .chat-input-cont .ci-cont {
+.room-div .chat-div .chat-input-box .ci-cont {
   width: 80%;
 }
-.container-room .right-cont .chat-input-cont .ci-send {
+.room-div .chat-div .chat-input-box .ci-send {
   width: 20%;
   margin-left: 20px;
 }
-.container-room .right-cont .chat-input-cont .chat-input {
+.room-div .chat-div .chat-input-box .chat-input {
   width: 100%;
   height: 36px;
   font-size: 0.85rem;
   padding: 4px 10px;
   border: none;
-  border-bottom: 3px solid #B064E3;
+  border-bottom: 3px solid #3490dc;
   color: #393e46;
 }
-.container-room .right-cont .chat-input-cont .chat-input:focus {
+.room-div .chat-div .chat-input-box .chat-input:focus {
   outline: none;
 }
-.container-room .right-cont .chat-input-cont .chat-send {
+.room-div .chat-div .chat-input-box .chat-send {
   height: 36px;
   padding: 5px 20px;
   border: none;
   background-color: white;
-  color: #B064E3;
+  color: #3490dc;
   font-weight: bold;
   font-size: 0.85rem;
   border-radius: 2px;
   transition: background-color 0.5s;
 }
-.container-room .right-cont .chat-input-cont .chat-send:hover {
+.room-div .chat-div .chat-input-box .chat-send:hover {
   color: #2980b9;
   cursor: pointer;
   background-color: #f3f3f3;
 }
-.container-room .right-cont .chat-input-cont .chat-send:focus {
+.room-div .chat-div .chat-input-box .chat-send:focus {
   outline: none;
 }
 

@@ -15,29 +15,28 @@
 </head>
 
 <body>
-    <div class="overlay" id="overlay">
+    <div class="dialog-box" id="overlay">
         <div class="box">
-            <div class="head-name">Enter a Name</div>
-            <input type="text" class="name-field" placeholder="Type here.." id="name-field"></input><br>
-            <button class="continue-name">Continue</button>
-
+            <div class="user-name">Enter a Name</div>
+            <input type="text" class="input-name" placeholder="Type here.." id="name-field"></input><br>
+            <button class="continue-btn">Continue</button>
         </div>
     </div>
-    <div class="container-room">
-        <div class="left-cont">
+    <div class="room-div">
+        <div class="main-div">
 
             <div class="video-cont-single" id="vcont">
                 <div class="video-box">
-                    <video class="video-frame" id="vd1" autoplay playsinline>
+                    <video class="video-frame" id="video-single" autoplay playsinline>
                     </video>
-                    <div class="nametag" id="myname">yourname</div>
-                    <div class="mute-icon" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
-                    <div class="video-off" id="myvideooff">Video Off</div>
+                    <div class="user-name-tag" id="myname">yourname</div>
+                    <div class="mute-btn" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
+                    <div class="video-off-icon" id="myvideooff">Video Off</div>
                 </div>
             </div>
 
-            <div class="whiteboard-cont"><canvas id="whiteboard" height="1000" width="1000"></canvas>
-                <div class="colors-cont">
+            <div class="white-board"><canvas id="whiteboard" height="1000" width="1000"></canvas>
+                <div class="color-palette">
                     <div class="black" onclick="setColor('black')"></div>
                     <div class="red" onclick="setColor('#e74c3c')"></div>
                     <div class="yellow" onclick="setColor('#f1c40f')"></div>
@@ -53,24 +52,24 @@
                 </div>
             </div>
 
-            <div class="footer">
+            <div class="toolbar">
                 <div class="utils">
 
-                    <div class="audio">
+                    <div class="audio-btn">
                         <i class="fas fa-microphone"></i>
                     </div>
-                    <div class="novideo">
+                    <div class="video-btn">
                         <i class="fas fa-video"></i>
                     </div>
-                    <div class="screenshare tooltip">
+                    <div class="screenshare-btn tooltip">
                         <i class="fas fa-desktop"></i>
                         <span class="tooltiptext">Share Screen</span>
                     </div>
-                    <div class="board-icon tooltip">
+                    <div class="board-btn tooltip">
                         <i class="fas fa-chalkboard"></i>
                         <span class="tooltiptext">Whiteboard</span>
                     </div>
-                    <div class="cutcall tooltip">
+                    <div class="end-call-btn tooltip">
                         <i class="fas fa-phone-slash"></i>
                         <span class="tooltiptext">Leave Call</span>
                     </div>
@@ -78,7 +77,7 @@
 
                 </div>
                 <div class="copycode-cont">
-                    <div class="roomcode"></div>
+                    <div class="meeting-code"></div>
                     <button class="copycode-button" onclick="CopyClassText()">Copy Code</button>
                 </div>
             </div>
@@ -86,17 +85,17 @@
 
         </div>
 
-        <div class="right-cont">
+        <div class="chat-div">
             <div class="head-title">
 
                 <div class="chats"><i class="fas fa-comment-alt mr-1"></i>Chat</div>
 
             </div>
 
-            <div class="chat-cont">
+            <div class="chat-box">
 
             </div>
-            <div class="chat-input-cont">
+            <div class="chat-input-box">
                 <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
                 <div class="ci-send"><button class="chat-send">Send</button></div>
             </div>
