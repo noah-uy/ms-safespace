@@ -1,9 +1,14 @@
-const createButton = document.querySelector("#createroom");
+// Containers
 const videoCont = document.querySelector('.video-display-user');
 const codeCont = document.querySelector('#meeting-code');
-const joinBut = document.querySelector('#joinroom');
+
+// Mic and audio
 const mic = document.querySelector('#mic');
 const cam = document.querySelector('#webcam');
+
+// Buttons
+const joinBtn = document.querySelector('#joinroom');
+const createBtn = document.querySelector("#createroom");
 
 let micAllowed = 1;
 let camAllowed = 1;
@@ -24,7 +29,7 @@ function uuidv4() {
 
 const createroomtext = 'Creating Room...';
 
-joinBut.addEventListener('click', (e) => {
+joinBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (codeCont.value.trim() == "") {
         codeCont.classList.add('meeting-code-error');

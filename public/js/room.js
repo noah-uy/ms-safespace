@@ -1,22 +1,26 @@
+// Connection elements
 let username;
-
 const socket = io();
-const myvideo = document.querySelector("#video-single");
 const roomid = params.get("room");
+
+// Video call fields and elements
+const myvideo = document.querySelector("#video-single");
 const chatRoom = document.querySelector('.chat-box');
-const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');
 const videoContainer = document.querySelector('#vcont');
 const overlayContainer = document.querySelector('#overlay')
-const continueButt = document.querySelector('.continue-btn');
 const nameField = document.querySelector('#name-field');
-const videoButt = document.querySelector('.video-btn');
-const audioButt = document.querySelector('.audio-btn');
-const cutCall = document.querySelector('.end-call-btn');
-const screenShareButt = document.querySelector('.screenshare-btn');
-const whiteboardButt = document.querySelector('.board-btn')
 
-//whiteboard js start
+// Buttons
+const continueBtn = document.querySelector('.continue-btn');
+const sendBtn = document.querySelector('.chat-send');
+const videoBtn = document.querySelector('.video-btn');
+const audioBtn = document.querySelector('.audio-btn');
+const cutCall = document.querySelector('.end-call-btn');
+const ScreenShareBtn = document.querySelector('.screenshare-btn');
+const whiteboardBtn = document.querySelector('.board-btn')
+
+//Whiteboard variables
 const whiteboardCont = document.querySelector('.white-board');
 const canvas = document.querySelector("#whiteboard");
 const ctx = canvas.getContext('2d');
@@ -42,7 +46,6 @@ function fitToContainer(canvas) {
 
 fitToContainer(canvas);
 
-//getCanvas call is under join room call
 socket.on('getCanvas', url => {
     let img = new Image();
     img.onload = start;
@@ -65,13 +68,12 @@ function setEraser() {
     drawsize = 10;
 }
 
-//might remove this
 function reportWindowSize() {
     fitToContainer(canvas);
 }
 
 window.onresize = reportWindowSize;
-//
+
 
 // For clearing whiteboard
 function clearBoard() {
@@ -142,6 +144,56 @@ socket.on('draw', (newX, newY, prevX, prevY, color, size) => {
 
 //end of code for whiteboard 
 
+//Code for screenshare
+ScreenShareBtn.addEventListener('click', () => {
+    screenShareToggle();
+});
+let screenshareEnabled = false;
+function screenShareToggle() {
+    let screenshareMedia;
+    if (!screenshareEnabled) {
+        if (navigator.getDisplayMedia) {
+            screenshareMedia = navigator.getDisplayMedia({ video: true });
+        } else if (navigator.mediaDevices.getDisplayMedia) {
+            screenshareMedia = navigator.mediaDevices.getDisplayMedia({ video: true });
+        } else {
+            screenshareMedia = navigator.mediaDevices.getUserMedia({
+                video: { mediaSource: "screen" },
+            });
+        }
+    } else {
+        screenshareMedia = navigator.mediaDevices.getUserMedia({ video: true });
+    }
+    screenshareMedia
+        .then((myscreenshare) => {
+            screenshareEnabled = !screenshareEnabled;
+            for (let key in connections) {
+                const sender = connections[key]
+                    .getSenders()
+                    .find((s) => (s.track ? s.track.kind === "video" : false));
+                sender.replaceTrack(myscreenshare.getVideoTracks()[0]);
+            }
+            myscreenshare.getVideoTracks()[0].enabled = true;
+            const newStream = new MediaStream([
+                myscreenshare.getVideoTracks()[0], 
+            ]);
+            myvideo.srcObject = newStream;
+            myvideo.muted = true;
+            mystream = newStream;
+            ScreenShareBtn.innerHTML = (screenshareEnabled 
+                ? `<i class="fas fa-desktop"></i><span class="tooltiptext">Stop Share Screen</span>`
+                : `<i class="fas fa-desktop"></i><span class="tooltiptext">Share Screen</span>`
+            );
+            myscreenshare.getVideoTracks()[0].onended = function() {
+                if (screenshareEnabled) screenShareToggle();
+            };
+        })
+        .catch((e) => {
+            alert("Unable to share screen:" + e.message);
+            console.error(e);
+        });
+}
+
 let videoAllowed = 1;
 let audioAllowed = 1;
 
@@ -199,7 +251,7 @@ function CopyClassText() {
     }, 5000);
 }
 
-continueButt.addEventListener('click', () => {
+continueBtn.addEventListener('click', () => {
     if (nameField.value == '') return;
     username = nameField.value;
     overlayContainer.style.visibility = 'hidden';
@@ -211,7 +263,7 @@ continueButt.addEventListener('click', () => {
 nameField.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        continueButt.click();
+        continueBtn.click();
     }
 });
 
@@ -242,7 +294,6 @@ function handleGetUserMediaError(e) {
     }
 
 }
-
 
 function reportError(e) {
     console.log(e);
@@ -403,60 +454,11 @@ function handleNewIceCandidate(candidate, sid) {
         .catch(reportError);
 }
 
+// Handles video answer
 function handleVideoAnswer(answer, sid) {
     console.log('answered the offer')
     const ans = new RTCSessionDescription(answer);
     connections[sid].setRemoteDescription(ans);
-}
-
-//Code for screenshare
-screenShareButt.addEventListener('click', () => {
-    screenShareToggle();
-});
-let screenshareEnabled = false;
-function screenShareToggle() {
-    let screenMediaPromise;
-    if (!screenshareEnabled) {
-        if (navigator.getDisplayMedia) {
-            screenMediaPromise = navigator.getDisplayMedia({ video: true });
-        } else if (navigator.mediaDevices.getDisplayMedia) {
-            screenMediaPromise = navigator.mediaDevices.getDisplayMedia({ video: true });
-        } else {
-            screenMediaPromise = navigator.mediaDevices.getUserMedia({
-                video: { mediaSource: "screen" },
-            });
-        }
-    } else {
-        screenMediaPromise = navigator.mediaDevices.getUserMedia({ video: true });
-    }
-    screenMediaPromise
-        .then((myscreenshare) => {
-            screenshareEnabled = !screenshareEnabled;
-            for (let key in connections) {
-                const sender = connections[key]
-                    .getSenders()
-                    .find((s) => (s.track ? s.track.kind === "video" : false));
-                sender.replaceTrack(myscreenshare.getVideoTracks()[0]);
-            }
-            myscreenshare.getVideoTracks()[0].enabled = true;
-            const newStream = new MediaStream([
-                myscreenshare.getVideoTracks()[0], 
-            ]);
-            myvideo.srcObject = newStream;
-            myvideo.muted = true;
-            mystream = newStream;
-            screenShareButt.innerHTML = (screenshareEnabled 
-                ? `<i class="fas fa-desktop"></i><span class="tooltiptext">Stop Share Screen</span>`
-                : `<i class="fas fa-desktop"></i><span class="tooltiptext">Share Screen</span>`
-            );
-            myscreenshare.getVideoTracks()[0].onended = function() {
-                if (screenshareEnabled) screenShareToggle();
-            };
-        })
-        .catch((e) => {
-            alert("Unable to share screen:" + e.message);
-            console.error(e);
-        });
 }
 
 socket.on('video-offer', handleVideoOffer);
@@ -581,7 +583,7 @@ socket.on('remove peer', sid => {
     delete connections[sid];
 })
 
-sendButton.addEventListener('click', () => {
+sendBtn.addEventListener('click', () => {
     const msg = messageField.value;
     messageField.value = '';
     socket.emit('message', msg, username, roomid);
@@ -590,7 +592,7 @@ sendButton.addEventListener('click', () => {
 messageField.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        sendButton.click();
+        sendBtn.click();
     }
 });
 
@@ -607,15 +609,15 @@ socket.on('message', (msg, sendername, time) => {
 </div>`
 });
 
-videoButt.addEventListener('click', () => {
+videoBtn.addEventListener('click', () => {
 
     if (videoAllowed) {
         for (let key in videoTrackSent) {
             videoTrackSent[key].enabled = false;
         }
-        videoButt.innerHTML = `<i class="fas fa-video-slash"></i>`;
+        videoBtn.innerHTML = `<i class="fas fa-video-slash"></i>`;
         videoAllowed = 0;
-        videoButt.style.backgroundColor = "#b12c2c";
+        videoBtn.style.backgroundColor = "#b12c2c";
 
         if (mystream) {
             mystream.getTracks().forEach(track => {
@@ -633,9 +635,9 @@ videoButt.addEventListener('click', () => {
         for (let key in videoTrackSent) {
             videoTrackSent[key].enabled = true;
         }
-        videoButt.innerHTML = `<i class="fas fa-video"></i>`;
+        videoBtn.innerHTML = `<i class="fas fa-video"></i>`;
         videoAllowed = 1;
-        videoButt.style.backgroundColor = "#4ECCA3";
+        videoBtn.style.backgroundColor = "#4ECCA3";
         if (mystream) {
             mystream.getTracks().forEach(track => {
                 if (track.kind === 'video')
@@ -650,15 +652,15 @@ videoButt.addEventListener('click', () => {
     }
 })
 
-audioButt.addEventListener('click', () => {
+audioBtn.addEventListener('click', () => {
 
     if (audioAllowed) {
         for (let key in audioTrackSent) {
             audioTrackSent[key].enabled = false;
         }
-        audioButt.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
+        audioBtn.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
         audioAllowed = 0;
-        audioButt.style.backgroundColor = "#b12c2c";
+        audioBtn.style.backgroundColor = "#b12c2c";
         if (mystream) {
             mystream.getTracks().forEach(track => {
                 if (track.kind === 'audio')
@@ -674,9 +676,9 @@ audioButt.addEventListener('click', () => {
         for (let key in audioTrackSent) {
             audioTrackSent[key].enabled = true;
         }
-        audioButt.innerHTML = `<i class="fas fa-microphone"></i>`;
+        audioBtn.innerHTML = `<i class="fas fa-microphone"></i>`;
         audioAllowed = 1;
-        audioButt.style.backgroundColor = "#4ECCA3";
+        audioBtn.style.backgroundColor = "#4ECCA3";
         if (mystream) {
             mystream.getTracks().forEach(track => {
                 if (track.kind === 'audio')
@@ -713,7 +715,7 @@ socket.on('action', (msg, sid) => {
     }
 })
 
-whiteboardButt.addEventListener('click', () => {
+whiteboardBtn.addEventListener('click', () => {
     if (boardVisisble) {
         whiteboardCont.style.visibility = 'hidden';
         boardVisisble = false;
