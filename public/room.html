@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/vcstyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
     <script>
         const params = new URLSearchParams(location.search);
@@ -15,94 +18,195 @@
 </head>
 
 <body>
-    <div class="dialog-box" id="overlay">
-        <div class="box">
-            <div class="user-name">Enter a Name</div>
-            <input type="text" class="input-name" placeholder="Type here.." id="name-field"></input><br>
-            <button class="continue-btn">Continue</button>
-        </div>
-    </div>
-    <div class="room-div">
-        <div class="main-div">
 
-            <div class="video-cont-single" id="vcont">
-                <div class="video-box">
-                    <video class="video-frame" id="video-single" autoplay playsinline>
-                    </video>
-                    <div class="user-name-tag" id="myname">yourname</div>
-                    <div class="mute-btn" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
-                    <div class="video-off-icon" id="myvideooff">Video Off</div>
+    <div class="dialog-box text-center pt-5" style="background-color:#f7f7f7;" id="overlay">
+        <p class="mt-5 pt-5" style="font-family: Poppins;font-size: 32px;line-height: 1;font-weight: 1000;letter-spacing: 0,5px;color: #2c4964;">Mental SafeSpace</p>
+        <div class="box mt-5" style="width:65%">
+            <div class="card" >
+                <div class="card-body">
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            Enter your name:
+                        </div>
+                    </div>
+                    <div class="row my-2 mx-3">
+                        <div class="col text-center">
+                            <input type="text" class="form-control" placeholder="Type here.." id="name-field"></input><br>
+                        </div>
+                    </div>
+                    <div class="row mb-4 mt-3">
+                        <div class="col">
+                            <button class="btn btn-outline-primary" style="border-radius:100px">Continue</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="white-board"><canvas id="whiteboard" height="1000" width="1000"></canvas>
-                <div class="color-palette">
-                    <div class="black" onclick="setColor('black')"></div>
-                    <div class="red" onclick="setColor('#e74c3c')"></div>
-                    <div class="yellow" onclick="setColor('#f1c40f')"></div>
-                    <div class="green" onclick="setColor('#badc58')"></div>
-                    <div class="blue" onclick="setColor('#3498db')"></div>
-                    <div class="orange" onclick="setColor('#e67e22')"></div>
-                    <div class="purple" onclick="setColor('#9b59b6')"></div>
-                    <div class="pink" onclick="setColor('#fd79a8')"></div>
-                    <div class="brown" onclick="setColor('#834c32')"></div>
-                    <div class="grey" onclick="setColor('gray')"></div>
-                    <div class="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
-                    <div class="clearboard" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
-                </div>
-            </div>
-
-            <div class="toolbar">
-                <div class="utils">
-
-                    <div class="audio-btn">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <div class="video-btn">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="screenshare-btn tooltip">
-                        <i class="fas fa-desktop"></i>
-                        <span class="tooltiptext">Share Screen</span>
-                    </div>
-                    <div class="board-btn tooltip">
-                        <i class="fas fa-chalkboard"></i>
-                        <span class="tooltiptext">Whiteboard</span>
-                    </div>
-                    <div class="end-call-btn tooltip">
-                        <i class="fas fa-phone-slash"></i>
-                        <span class="tooltiptext">Leave Call</span>
-                    </div>
-
-
-                </div>
-                <div class="copycode-cont">
-                    <div class="meeting-code"></div>
-                    <button class="copycode-button" onclick="CopyClassText()">Copy Code</button>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="chat-div">
-            <div class="head-title">
-
-                <div class="chats"><i class="fas fa-comment-alt mr-1"></i>Chat</div>
-
-            </div>
-
-            <div class="chat-box">
-
-            </div>
-            <div class="chat-input-box">
-                <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
-                <div class="ci-send"><button class="chat-send">Send</button></div>
             </div>
         </div>
     </div>
+
+
+
+
+
+    <div class="room-div " style="background-color:red">
+        <div class="row m-0 p-0" style="width:100%">
+
+
+            <div class="col-md m-0 p-0" style="background-color:blue">
+                <div class="main-div" style="width:100%">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="video-cont-single" id="vcont">
+                                <div class="video-box">
+                                    <video class="video-frame" id="video-single" autoplay playsinline>
+                                    </video>
+                                    <div class="user-name-tag" id="myname">yourname</div>
+                                    <div class="mute-btn" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
+                                    <div class="video-off-icon" id="myvideooff">Video Off</div>
+                                </div>
+                            </div>
+                
+
+
+
+
+                            <div class="white-board"><canvas id="whiteboard" height="1000" width="1000"></canvas>
+                                <div class="color-palette">
+                                    <div class="black" onclick="setColor('black')"></div>
+                                    <div class="red" onclick="setColor('#e74c3c')"></div>
+                                    <div class="yellow" onclick="setColor('#f1c40f')"></div>
+                                    <div class="green" onclick="setColor('#badc58')"></div>
+                                    <div class="blue" onclick="setColor('#3498db')"></div>
+                                    <div class="orange" onclick="setColor('#e67e22')"></div>
+                                    <div class="purple" onclick="setColor('#9b59b6')"></div>
+                                    <div class="pink" onclick="setColor('#fd79a8')"></div>
+                                    <div class="brown" onclick="setColor('#834c32')"></div>
+                                    <div class="grey" onclick="setColor('gray')"></div>
+                                    <div class="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
+                                    <div class="clearboard" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col my-auto" hidden>
+                        <div id="code" class="meeting-code"></div>
+                    </div>
+
+
+
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="shadow px-4 py-2" style="background-color:white;border-radius:5px">
+                                <div class="row">
+                                    <div class="col">
+                                        <div hidden id="mute" class="audio-btn"></div>
+                                        <button class="btn" style="background-color:transparent" onclick="toggle('mute')" data-toggle="tooltip" data-placement="top" title="Toggle Microphone">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <div hidden id="video" class="video-btn"></div>
+                                        <button class="btn" style="background-color:transparent" onclick="toggle('video')" data-toggle="tooltip" data-placement="top" title="Toggle Video">
+                                            <i class="fas fa-video"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <div hidden id="sharescreen" class="screenshare-btn"></div>
+                                        <button class="btn" style="background-color:transparent" onclick="toggle('sharescreen')" data-toggle="tooltip" data-placement="top" title="Sharescreen">
+                                            <i class="fas fa-desktop"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <div hidden id="board" class="board-btn"></div>
+                                        <button class="btn" style="background-color:transparent" onclick="toggle('board')" data-toggle="tooltip" data-placement="top" title="Whiteboard">
+                                            <i class="fas fa-chalkboard"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <button class="btn" style="background-color:transparent" onclick="copy()" data-toggle="tooltip" data-placement="top" title="Copy Meeting Code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <button class="btn" style="background-color:transparent" onclick="chat()" data-toggle="tooltip" data-placement="top" title="Chat">
+                                            <i class="fas fa-comment"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="col">
+                                        <div hidden id="end" class="end-call-btn"></div>
+                                        <button class="btn" style="background-color:transparent" onclick="toggle('end')" data-toggle="tooltip" data-placement="top" title="Leave">
+                                            <i class="fas fa-phone-slash text-danger"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+            <div id="chatDiv" class="col-md-3 m-0 p-0" style="width:100%">
+                <div class="chat-div" style="width:100%">
+                    <div class="head-title">
+        
+                        <div class="chats"><i class="fas fa-comment-alt mr-1"></i>Chat</div>
+        
+                    </div>
+        
+                    <div class="chat-box">
+        
+                    </div>
+                    <div class="chat-input-box">
+                        <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
+                        <div class="ci-send"><button class="chat-send">Send</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/room.js"></script>
+    <script>
+
+        function chat() {
+            if(document.getElementById('chatDiv').hidden == true){
+                document.getElementById('chatDiv').hidden = false
+            }
+            else {
+                document.getElementById('chatDiv').hidden = true
+            }
+            
+        }
+
+        function copy() {
+            navigator.clipboard.writeText(document.getElementById('code').innerHTML)
+        }
+
+        function toggle(element) {
+            if(element == "board" && document.getElementById('chatDiv').hidden == true){
+                document.getElementById('chatDiv').hidden = false
+            }
+            document.getElementById(element).click()
+        }
+    </script>
 </body>
 
 </html>

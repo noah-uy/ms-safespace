@@ -12,7 +12,7 @@ const overlayContainer = document.querySelector('#overlay')
 const nameField = document.querySelector('#name-field');
 
 // Buttons
-const continueBtn = document.querySelector('.continue-btn');
+const continueBtn = document.querySelector('.btn-outline-primary');
 const sendBtn = document.querySelector('.chat-send');
 const videoBtn = document.querySelector('.video-btn');
 const audioBtn = document.querySelector('.audio-btn');
@@ -269,7 +269,7 @@ nameField.addEventListener("keyup", function (event) {
 
 socket.on('user count', count => {
     if (count > 1) {
-        videoContainer.className = 'video-display';
+        videoContainer.className = 'row video-display';
     }
     else {
         videoContainer.className = 'video-display-single';
@@ -379,6 +379,7 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
             vidCont.appendChild(name);
             vidCont.appendChild(muteIcon);
             vidCont.appendChild(videoOff);
+
 
             videoContainer.appendChild(vidCont);
 
