@@ -357,7 +357,7 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
             muteIcon.id = `mute${sid}`;
             videoOff.id = `vidoff${sid}`;
             muteIcon.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
-            videoOff.innerHTML = 'Video Off'
+            videoOff.innerHTML = `<i class="fas fa-video-slash"></i>`;
             vidCont.classList.add('video-box');
             newvideo.classList.add('video-frame');
             newvideo.autoplay = true;
@@ -509,7 +509,7 @@ socket.on('join room', async (conc, cnames, micinfo, videoinfo) => {
                     muteIcon.id = `mute${sid}`;
                     videoOff.id = `vidoff${sid}`;
                     muteIcon.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
-                    videoOff.innerHTML = 'Video Off'
+                    videoOff.innerHTML = `<i class="fas fa-video-slash"></i>`;
                     vidCont.classList.add('video-box');
                     newvideo.classList.add('video-frame');
                     newvideo.autoplay = true;

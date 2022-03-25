@@ -491,6 +491,7 @@ navbar .logo {
   font-size: 20px;
   bottom: 10px;
 }
+
 .room-div .main-div .video-display-single {
   height: 75vh;
 }
@@ -532,10 +533,20 @@ navbar .logo {
   color: #d63434;
   bottom: 10px;
   position: absolute;
+  right: 50px;
+  font-size: 20px;
+  bottom: 10px;
+}
+
+.room-div .main-div .video-display-single .video-box .video-off-icon {
+  color: #d63434;
+  bottom: 10px;
+  position: absolute;
   right: 10px;
   font-size: 20px;
   bottom: 10px;
 }
+
 .room-div .main-div .toolbar {
   position: relative;
 }
